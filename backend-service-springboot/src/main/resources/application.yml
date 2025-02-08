@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/financial_activity_system
     username: root
-    password: validsam123
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 10
@@ -38,16 +38,16 @@ spring:
 
   logging:
     level:
-      com.zaxxer.hikari: WARN  # Suppress verbose HikariCP logs
-      org.hibernate: ERROR     # Suppress Hibernate ORM logs
-      org.hibernate.orm.deprecation: ERROR  # Suppress Hibernate deprecation warnings
-      org.springframework.orm.jpa: ERROR  # Suppress Spring Data JPA warnings
-      org.springframework.web.servlet: ERROR  # Suppress Tomcat startup logs
-      org.springframework.boot.web.embedded.tomcat: ERROR  # Suppress Tomcat logs
-      org.apache.catalina.core: ERROR  # Suppress Tomcat core logs
-      org.apache.catalina.valves: ERROR  # Suppress Tomcat valve logs
-      org.apache.catalina: ERROR  # Suppress Tomcat logs
-      org.springframework.security: ERROR  # Suppress Spring Security logs
+      com.zaxxer.hikari: WARN # Suppress verbose HikariCP logs
+      org.hibernate: ERROR # Suppress Hibernate ORM logs
+      org.hibernate.orm.deprecation: ERROR # Suppress Hibernate deprecation warnings
+      org.springframework.orm.jpa: ERROR # Suppress Spring Data JPA warnings
+      org.springframework.web.servlet: ERROR # Suppress Tomcat startup logs
+      org.springframework.boot.web.embedded.tomcat: ERROR # Suppress Tomcat logs
+      org.apache.catalina.core: ERROR # Suppress Tomcat core logs
+      org.apache.catalina.valves: ERROR # Suppress Tomcat valve logs
+      org.apache.catalina: ERROR # Suppress Tomcat logs
+      org.springframework.security: ERROR # Suppress Spring Security logs
 
 server:
   port: 9500

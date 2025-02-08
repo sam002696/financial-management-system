@@ -66,19 +66,14 @@ npm start
 CREATE DATABASE financial_activity_system;
 ```
 
-4. Set up a user (update username/password if necessary):
-
-```sql
-CREATE USER 'root'@'localhost' IDENTIFIED BY 'validsam123';
-GRANT ALL PRIVILEGES ON financial_activity_system.* TO 'root'@'localhost';
-FLUSH PRIVILEGES;
-```
-
-5. MySQL Connection URL:
-
-```yaml
-url: jdbc:mysql://localhost:3306/financial_activity_system
-```
+4. MySQL Credentials:
+   ```yaml
+   username: root
+   password: root
+   driver-class-name: com.mysql.cj.jdbc.Driver
+   url: jdbc:mysql://localhost:3306/financial_activity_system
+   ```
+5. Other necessary details can be found in the `application.yml` file.
 
 ---
 
