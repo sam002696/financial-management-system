@@ -1,0 +1,126 @@
+<div class="px-4 sm:px-6 lg:px-8">
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold text-gray-900">Income List</h1>
+      <p class="mt-2 text-sm text-gray-700">
+        A list of all the income records including their source, category,
+        amount, and date.
+      </p>
+    </div>
+    <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+      <button
+        (click)="handleIncome()"
+        type="button"
+        class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      >
+        Log Income
+      </button>
+    </div>
+  </div>
+  <div class="mt-8 flow-root">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <div
+          class="overflow-hidden ring-1 shadow-sm ring-black/5 sm:rounded-lg"
+        >
+          <table class="min-w-full divide-y divide-gray-300">
+            <thead class="bg-gray-50">
+              <tr>
+                <th
+                  scope="col"
+                  class="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                >
+                  Source
+                </th>
+                <th
+                  scope="col"
+                  class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                >
+                  Category
+                </th>
+                <th
+                  scope="col"
+                  class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                >
+                  Amount
+                </th>
+                <th
+                  scope="col"
+                  class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                >
+                  Date
+                </th>
+                <th scope="col" class="relative py-3.5 pr-4 pl-3 sm:pr-6">
+                  <span class="sr-only">Edit</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              class="divide-y divide-gray-200 bg-white"
+              *ngIf="incomeList.length > 0; else noData"
+            >
+              <tr *ngFor="let income of incomeList">
+                <td
+                  class="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-6"
+                >
+                  {{ income.source }}
+                </td>
+                <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">
+                  {{ income.category }}
+                </td>
+                <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">
+                  {{ income.amount }}
+                </td>
+                <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">
+                  {{ income.date }}
+                </td>
+                <td
+                  class="relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-6"
+                >
+                  <a
+                    [routerLink]="['/income/edit', income.id]"
+                    routerLinkActive="router-link-active"
+                    class="text-indigo-600 hover:text-indigo-900 bg-indigo-200 p-2 rounded-md whitespace-nowrap"
+                    >Edit<span class="sr-only">, {{ income.source }}</span></a
+                  >
+                  <button
+                    (click)="onViewContract(income.id)"
+                    class="text-yellow-600 hover:text-yellow-900 ml-3 rounded-md bg-yellow-200 p-2 whitespace-nowrap cursor-pointer"
+                  >
+                    View Contract
+                  </button>
+                  <button
+                    (click)="onDelete(income.id)"
+                    class="text-red-600 hover:text-red-900 ml-3 rounded-md bg-red-200 p-2 whitespace-nowrap cursor-pointer"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- No data found message -->
+          <ng-template #noData>
+            <td
+              colspan="5"
+              class="text-center py-4 text-indigo-500 font-semibold"
+            >
+              No data found
+            </td>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination Component -->
+  <app-pagination
+    *ngIf="incomeList.length > 0"
+    [meta]="meta"
+    (pageChanged)="onPageChange($event)"
+  ></app-pagination>
+
+  <app-income-modal [incomeId]="selectedIncomeId" (closeModal)="closeModal()">
+  </app-income-modal>
+</div>

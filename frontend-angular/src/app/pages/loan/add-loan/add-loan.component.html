@@ -1,0 +1,77 @@
+<div class="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
+  <!-- Page Heading -->
+  <div class="md:col-span-2">
+    <h1 class="text-xl font-semibold text-gray-600">Add your loan</h1>
+  </div>
+
+  <form
+    (ngSubmit)="onSubmit()"
+    class="bg-white ring-1 shadow-xs ring-gray-900/5 sm:rounded-xl md:col-span-2"
+    #loanForm="ngForm"
+  >
+    <div class="px-4 py-6 sm:p-8">
+      <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <!-- Loan Amount -->
+        <div class="sm:col-span-4">
+          <label for="amount" class="block text-sm/6 font-medium text-gray-900"
+            >Loan Amount <span class="text-red-500">*</span></label
+          >
+          <div class="mt-2">
+            <input
+              [(ngModel)]="addLoan.amount"
+              id="amount"
+              name="amount"
+              type="number"
+              autocomplete="email"
+              class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+              #amount="ngModel"
+              required
+            />
+          </div>
+          <div
+            *ngIf="amount.invalid && amount.touched"
+            class="text-red-500 text-xs mt-1 font-medium"
+          >
+            Loan Amount is required.
+          </div>
+        </div>
+
+        <!-- Loan Due Date (Optional) -->
+        <div class="sm:col-span-3">
+          <label for="date" class="block text-sm/6 font-medium text-gray-900"
+            >Loan Due Date
+            <span class="text-gray-600"
+              >(today's date will be given by the system if it is not
+              provided)</span
+            >
+          </label>
+          <div class="mt-2 grid grid-cols-1">
+            <input
+              [(ngModel)]="addLoan.dueDate"
+              name="date"
+              type="date"
+              id="date"
+              class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+              #date="ngModel"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8"
+    >
+      <button type="button" class="text-sm/6 font-semibold text-gray-900">
+        Cancel
+      </button>
+      <button
+        type="submit"
+        [disabled]="loanForm.invalid"
+        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:bg-gray-400"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>
